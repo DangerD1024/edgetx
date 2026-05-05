@@ -985,6 +985,7 @@
 #define TR_USB_JOYSTICK                "USB 游戏柄 (HID)"
 #define TR_USB_MASS_STORAGE            "USB 存储器 (SD)"
 #define TR_USB_SERIAL                  "USB 串口 (VCP)"
+#define TR_USB_CHANNELS                "USB RC Channels"
 #define TR_AND_SWITCH                  "与开关"
 #define TR_SF                          "SF"
 #define TR_GF                          "GF"

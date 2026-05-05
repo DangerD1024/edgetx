@@ -1029,6 +1029,7 @@
 #define TR_USB_JOYSTICK                   "USB 조이스틱 (HID)"
 #define TR_USB_MASS_STORAGE               "USB 저장소 (SD)"
 #define TR_USB_SERIAL                     "USB 시리얼 (VCP)"
+#define TR_USB_CHANNELS                "USB RC Channels"
 #define TR_AND_SWITCH                     "AND 스위치"
 #define TR_SF                             "특수 기능 (SF)"
 #define TR_GF                             "전역 기능 (GF)"

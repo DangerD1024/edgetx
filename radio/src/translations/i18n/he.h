@@ -988,6 +988,7 @@
 #define TR_USB_JOYSTICK                "חיבור משחק (HID)"
 #define TR_USB_MASS_STORAGE            "חיבור העברת נתונים (SD)"
 #define TR_USB_SERIAL                  "חיבור סריילי (VCP)"
+#define TR_USB_CHANNELS                "USB RC Channels"
 #define TR_AND_SWITCH                  "מתג AND"
 #define TR_SF                          "SF"
 #define TR_GF                          "GF"

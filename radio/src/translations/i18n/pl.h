@@ -977,6 +977,7 @@
 #define TR_USB_JOYSTICK        "USB Joystick (HID)"
 #define TR_USB_MASS_STORAGE    "USB Storage (SD)"
 #define TR_USB_SERIAL          "USB Serial (VCP)"
+#define TR_USB_CHANNELS                "USB RC Channels"
 #define TR_AND_SWITCH          "Przełącznik AND"
 #define TR_SF                  "FS"
 #define TR_GF                  "FG"

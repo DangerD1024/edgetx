@@ -986,6 +986,7 @@
 #define TR_USB_JOYSTICK                "USB Джойстик (HID)"
 #define TR_USB_MASS_STORAGE            "USB Сховище (SD)"
 #define TR_USB_SERIAL                  "USB Посл. порт (VCP)"
+#define TR_USB_CHANNELS                "USB Канали (RC)"
 #define TR_AND_SWITCH                  "AND switch"
 #define TR_SF                          "SF"
 #define TR_GF                          "GF"
