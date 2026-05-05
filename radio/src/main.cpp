@@ -86,6 +86,12 @@ void openUsbMenu()
   });
 
   _usbMenu->setTitle("USB");
+#if defined(USB_CHANNELS)
+  _usbMenu->addLine(STR_USB_CHANNELS, [] {
+    TRACE("USB channels");
+    setSelectedUsbMode(USB_CHANNELS_MODE);
+  });
+#endif
   _usbMenu->addLine(STR_USB_JOYSTICK, [] {
     TRACE("USB set joystick");
     setSelectedUsbMode(USB_JOYSTICK_MODE);
@@ -98,12 +104,6 @@ void openUsbMenu()
   _usbMenu->addLine(STR_USB_SERIAL, [] {
     TRACE("USB serial");
     setSelectedUsbMode(USB_SERIAL_MODE);
-  });
-#endif
-#if defined(USB_CHANNELS)
-  _usbMenu->addLine(STR_USB_CHANNELS, [] {
-    TRACE("USB channels");
-    setSelectedUsbMode(USB_CHANNELS_MODE);
   });
 #endif
 }
@@ -137,11 +137,11 @@ void openUsbMenu()
   if (popupMenuHandler != onUSBConnectMenu) {
     POPUP_MENU_TITLE(STR_SELECT_MODE);
 #if defined(USB_SERIAL) && defined(USB_CHANNELS)
-    POPUP_MENU_START(onUSBConnectMenu, 4, STR_USB_JOYSTICK, STR_USB_MASS_STORAGE, STR_USB_SERIAL, STR_USB_CHANNELS);
+    POPUP_MENU_START(onUSBConnectMenu, 4, STR_USB_CHANNELS, STR_USB_JOYSTICK, STR_USB_MASS_STORAGE, STR_USB_SERIAL);
 #elif defined(USB_SERIAL)
     POPUP_MENU_START(onUSBConnectMenu, 3, STR_USB_JOYSTICK, STR_USB_MASS_STORAGE, STR_USB_SERIAL);
 #elif defined(USB_CHANNELS)
-    POPUP_MENU_START(onUSBConnectMenu, 3, STR_USB_JOYSTICK, STR_USB_MASS_STORAGE, STR_USB_CHANNELS);
+    POPUP_MENU_START(onUSBConnectMenu, 3, STR_USB_CHANNELS, STR_USB_JOYSTICK, STR_USB_MASS_STORAGE);
 #else
     POPUP_MENU_START(onUSBConnectMenu, 2, STR_USB_JOYSTICK, STR_USB_MASS_STORAGE);
 #endif
