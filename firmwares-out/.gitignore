@@ -1,0 +1,5 @@
+# Build outputs and per-target build trees produced by ./build_all.sh
+*.bin
+logs/
+run-*.log
+run.log
