@@ -1010,6 +1010,7 @@
 #define TR_USB_JOYSTICK                "USB 遊戲柄 (HID)"
 #define TR_USB_MASS_STORAGE            "USB 存儲器 (SD)"
 #define TR_USB_SERIAL                  "USB 端口 (VCP)"
+#define TR_USB_CHANNELS                "USB RC Channels"
 #define TR_SETUP_SCREENS               "設置顯示頁面"
 #define TR_MONITOR_SCREENS             "查看器"
 #define TR_AND_SWITCH                  "與開關"

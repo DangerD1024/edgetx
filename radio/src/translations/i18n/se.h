@@ -1014,6 +1014,7 @@
 #define TR_USB_JOYSTICK                 "USB-joystick (HID)"
 #define TR_USB_MASS_STORAGE             "USB-lagring (SD)"
 #define TR_USB_SERIAL                   "USB Seriell (Debug)"
+#define TR_USB_CHANNELS                "USB RC Channels"
 #define TR_SETUP_SCREENS                "Setupskärmar"
 #define TR_MONITOR_SCREENS              "Monitorer"
 #define TR_AND_SWITCH                   "AND-brytare"

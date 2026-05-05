@@ -1014,6 +1014,7 @@
 #define TR_USB_JOYSTICK                "USB Джойстик (HID)"
 #define TR_USB_MASS_STORAGE            "USB Сховище (SD)"
 #define TR_USB_SERIAL                  "USB Посл. порт (VCP)"
+#define TR_USB_CHANNELS                "USB Канали (RC)"
 #define TR_SETUP_SCREENS               "Налаштування екранів"
 #define TR_MONITOR_SCREENS             "Монітори"
 #define TR_AND_SWITCH                  "AND switch"

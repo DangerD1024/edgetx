@@ -1012,6 +1012,7 @@
 #define TR_USB_JOYSTICK                "USB Joystick (HID)"
 #define TR_USB_MASS_STORAGE            "USB Speicher (SD)"
 #define TR_USB_SERIAL                  "USB Seriell (VCP)"
+#define TR_USB_CHANNELS                "USB RC Channels"
 #define TR_SETUP_SCREENS               "Setup Hauptbildschirme"
 #define TR_MONITOR_SCREENS             "Monitore Mischer Kanal Logik"
 #define TR_AND_SWITCH                  TR("UND Schalt", "UND Schalter") // UND mit weiterem Schaltern

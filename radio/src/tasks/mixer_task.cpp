@@ -195,6 +195,11 @@ void mixerTask()
       if (getSelectedUsbMode() == USB_JOYSTICK_MODE) {
         usbJoystickUpdate();
       }
+#if defined(USB_CHANNELS)
+      else if (getSelectedUsbMode() == USB_CHANNELS_MODE) {
+        usbChannelsUpdate();
+      }
+#endif
 #endif
 
       // we are the main actor to reset the watchdog timer

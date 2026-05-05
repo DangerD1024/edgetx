@@ -1015,6 +1015,7 @@
 #define TR_USB_JOYSTICK                "USB Джойс (HID)"
 #define TR_USB_MASS_STORAGE            "USB Карта SD (SD)"
 #define TR_USB_SERIAL                  "USB Serial (VCP)"
+#define TR_USB_CHANNELS                "USB RC Channels"
 #define TR_SETUP_SCREENS               "Выбор экранов"
 #define TR_MONITOR_SCREENS             "Мониторы"
 #define TR_AND_SWITCH                  "AND Тумблер"

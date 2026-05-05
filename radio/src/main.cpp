@@ -100,6 +100,12 @@ void openUsbMenu()
     setSelectedUsbMode(USB_SERIAL_MODE);
   });
 #endif
+#if defined(USB_CHANNELS)
+  _usbMenu->addLine(STR_USB_CHANNELS, [] {
+    TRACE("USB channels");
+    setSelectedUsbMode(USB_CHANNELS_MODE);
+  });
+#endif
 }
 
 #else
@@ -116,6 +122,11 @@ void onUSBConnectMenu(const char *result)
     setSelectedUsbMode(USB_SERIAL_MODE);
   }
 #endif
+#if defined(USB_CHANNELS)
+  else if (result == STR_USB_CHANNELS) {
+    setSelectedUsbMode(USB_CHANNELS_MODE);
+  }
+#endif
   else if (result == STR_EXIT) {
     _usbDisabled = true;
   }
@@ -125,8 +136,12 @@ void openUsbMenu()
 {
   if (popupMenuHandler != onUSBConnectMenu) {
     POPUP_MENU_TITLE(STR_SELECT_MODE);
-#if defined(USB_SERIAL)
+#if defined(USB_SERIAL) && defined(USB_CHANNELS)
+    POPUP_MENU_START(onUSBConnectMenu, 4, STR_USB_JOYSTICK, STR_USB_MASS_STORAGE, STR_USB_SERIAL, STR_USB_CHANNELS);
+#elif defined(USB_SERIAL)
     POPUP_MENU_START(onUSBConnectMenu, 3, STR_USB_JOYSTICK, STR_USB_MASS_STORAGE, STR_USB_SERIAL);
+#elif defined(USB_CHANNELS)
+    POPUP_MENU_START(onUSBConnectMenu, 3, STR_USB_JOYSTICK, STR_USB_MASS_STORAGE, STR_USB_CHANNELS);
 #else
     POPUP_MENU_START(onUSBConnectMenu, 2, STR_USB_JOYSTICK, STR_USB_MASS_STORAGE);
 #endif

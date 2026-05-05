@@ -1016,6 +1016,7 @@
 #define TR_USB_JOYSTICK                "חיבור משחק (HID)"
 #define TR_USB_MASS_STORAGE            "חיבור העברת נתונים (SD)"
 #define TR_USB_SERIAL                  "חיבור סריילי (VCP)"
+#define TR_USB_CHANNELS                "USB RC Channels"
 #define TR_SETUP_SCREENS               "הגדרות מסכים"
 #define TR_MONITOR_SCREENS             "מצגים"
 #define TR_AND_SWITCH                  "AND switch"

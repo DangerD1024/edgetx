@@ -1013,6 +1013,7 @@
 #define TR_USB_JOYSTICK                 "Joystick USB (HID)"
 #define TR_USB_MASS_STORAGE             "Storage USB (SD)"
 #define TR_USB_SERIAL                   "Seriale USB (VCP)"
+#define TR_USB_CHANNELS                "USB RC Channels"
 #define TR_SETUP_SCREENS                "Schermate conf."
 #define TR_MONITOR_SCREENS              "Monitors"
 #define TR_AND_SWITCH                   "Switch AND"

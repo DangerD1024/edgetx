@@ -159,6 +159,9 @@ extern USBD_HandleTypeDef hUsbDevice;
 extern "C" USBD_StorageTypeDef USBD_Storage_Interface_fops;
 extern USBD_CDC_ItfTypeDef USBD_Interface_fops;
 extern USBD_DFU_MediaTypeDef USBD_DFU_MEDIA_fops;
+#if defined(USB_CHANNELS)
+extern "C" USBD_CDC_ItfTypeDef USBD_Channels_Interface_fops;
+#endif
 
 void usbStart()
 {
@@ -196,6 +199,14 @@ void usbStart()
       // initialize USB as CDC device (virtual serial port)
       USBD_RegisterClass(&hUsbDevice, &USBD_CDC);
       USBD_CDC_RegisterInterface(&hUsbDevice, &USBD_Interface_fops);
+      break;
+#endif
+#if defined(USB_CHANNELS)
+    case USB_CHANNELS_MODE:
+      // initialize USB as CDC device that streams channelOutputs[]
+      usbChannelsInit();
+      USBD_RegisterClass(&hUsbDevice, &USBD_CDC);
+      USBD_CDC_RegisterInterface(&hUsbDevice, &USBD_Channels_Interface_fops);
       break;
 #endif
 #endif

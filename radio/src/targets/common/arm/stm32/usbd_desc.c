@@ -98,6 +98,12 @@
 #define USBD_CDC_CONFIGURATION_FS_STRING    "VSP Config"
 #define USBD_CDC_INTERFACE_FS_STRING        "VSP Interface"
 
+#define USBD_CHANNELS_VID                   USBD_VID_PID_CODES
+#define USBD_CHANNELS_PID                   0x4F55     // distinct from HID 0x4F54
+#define USBD_CHANNELS_PRODUCT_FS_STRING     USB_NAME " RC Channels"
+#define USBD_CHANNELS_CONFIGURATION_FS_STRING "RC Channels Config"
+#define USBD_CHANNELS_INTERFACE_FS_STRING   "RC Channels Interface"
+
 #if defined(FIRMWARE_QSPI)
 #define USBD_DFU_VID                        USBD_VID_STM
 #define USBD_DFU_PID                        0xDF11
@@ -325,6 +331,12 @@ uint8_t * USBD_FS_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
       version_minor = 0x00;
       break;
 #endif
+#if defined(USB_CHANNELS)
+    case USB_CHANNELS_MODE:
+      vid = USBD_CHANNELS_VID;
+      pid = USBD_CHANNELS_PID;
+      break;
+#endif
     default:
       vid = 0;
       pid = 0;
@@ -395,6 +407,11 @@ uint8_t * USBD_FS_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length
       USBD_GetString ((uint8_t*)USBD_DFU_PRODUCT_STRING, USBD_StrDesc, length);
       break;
 #endif
+#if defined(USB_CHANNELS)
+    case USB_CHANNELS_MODE:
+      USBD_GetString ((uint8_t*)USBD_CHANNELS_PRODUCT_FS_STRING, USBD_StrDesc, length);
+      break;
+#endif
   }
   return USBD_StrDesc;
 }
@@ -457,6 +474,11 @@ uint8_t * USBD_FS_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
       USBD_GetString ((uint8_t*)USBD_DFU_CONFIGURATION_STRING, USBD_StrDesc, length);
       break;
 #endif
+#if defined(USB_CHANNELS)
+    case USB_CHANNELS_MODE:
+      USBD_GetString ((uint8_t*)USBD_CHANNELS_CONFIGURATION_FS_STRING, USBD_StrDesc, length);
+      break;
+#endif
   }
   return USBD_StrDesc;
 }
@@ -482,6 +504,11 @@ uint8_t * USBD_FS_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *leng
 #if defined(FIRMWARE_QSPI)
     case USB_DFU_MODE:
       USBD_GetString ((uint8_t*)USBD_DFU_INTERFACE_STRING, USBD_StrDesc, length);
+      break;
+#endif
+#if defined(USB_CHANNELS)
+    case USB_CHANNELS_MODE:
+      USBD_GetString ((uint8_t*)USBD_CHANNELS_INTERFACE_FS_STRING, USBD_StrDesc, length);
       break;
 #endif
   }

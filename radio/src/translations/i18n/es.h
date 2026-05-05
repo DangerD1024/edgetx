@@ -1007,6 +1007,7 @@
 #define TR_USB_JOYSTICK        "Joystick USB (HID)"
 #define TR_USB_MASS_STORAGE    "Almaz. USB (SD)"
 #define TR_USB_SERIAL          "Serie USB (VCP)"
+#define TR_USB_CHANNELS                "USB RC Channels"
 #define TR_SETUP_SCREENS       "Pantallas config"
 #define TR_MONITOR_SCREENS     "Monitores"
 #define TR_AND_SWITCH          TR("Inter. AND", "Interruptor AND")

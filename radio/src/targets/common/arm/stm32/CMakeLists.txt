@@ -5,6 +5,7 @@ option(LUA_COMPILER "Pre-compile and save Lua scripts" ON)
 option(LUA_ALLOCATOR_TRACER "Trace Lua memory (de)allocations to debug port (also needs DEBUG=YES NANO=NO)" OFF)
 
 option(USB_SERIAL "Enable USB serial (CDC)" OFF)
+option(USB_CHANNELS "Enable USB RC channel streaming mode (CDC, custom protocol)" ON)
 
 set(ARCH ARM)
 add_definitions(-DSTM32 -DLUA_INPUTS -DVARIO)
@@ -76,6 +77,13 @@ if(NOT NATIVE_BUILD)
 
   if(DEBUG OR CLI OR USB_SERIAL)
     target_compile_options(stm32usb_device_fw PRIVATE -DUSB_SERIAL)
+  endif()
+
+  if(USB_CHANNELS)
+    target_sources(stm32usb_device_fw PRIVATE
+      ${STM32_DRIVER_DIR}/usbd_channels.cpp
+    )
+    target_compile_options(stm32usb_device_fw PRIVATE -DUSB_CHANNELS)
   endif()
 
   target_include_directories(stm32usb_device_fw PRIVATE
@@ -173,6 +181,11 @@ endif()
 if(DEBUG OR CLI OR USB_SERIAL)
   add_definitions(-DUSB_SERIAL)
   message("-- Adding support for USB serial")
+endif()
+
+if(USB_CHANNELS)
+  add_definitions(-DUSB_CHANNELS)
+  message("-- Adding support for USB RC channel streaming")
 endif()
 
 set(FIRMWARE_SRC ${FIRMWARE_SRC} syscalls.c)

@@ -34,7 +34,10 @@ enum usbMode {
   USB_MASS_STORAGE_MODE,
   USB_SERIAL_MODE,
   USB_DFU_MODE,
-#if defined(USB_SERIAL)
+  USB_CHANNELS_MODE,
+#if defined(USB_CHANNELS)
+  USB_MAX_MODE=USB_CHANNELS_MODE,
+#elif defined(USB_SERIAL)
   USB_MAX_MODE=USB_SERIAL_MODE,
 #else
   USB_MAX_MODE=USB_MASS_STORAGE_MODE,
@@ -66,6 +69,12 @@ extern const etx_serial_port_t UsbSerialPort;
 void usbJoystickRestart();
 #endif
 void usbJoystickUpdate();
+
+// USB Channels (CDC-class streaming of channelOutputs[])
+#if defined(USB_CHANNELS)
+void usbChannelsInit();
+void usbChannelsUpdate();
+#endif
 
 // USB DFU
 int usbRegisterDFUMedia(const void* dfu_media);
