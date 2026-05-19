@@ -64,18 +64,28 @@ PASS=()
 FAIL=()
 SKIP=()
 
+# STM32H7 + external-QSPI boards. Their EdgeTX target sets
+# FIRMWARE_FORMAT_UF2=YES, so the build emits firmware.uf2 (written by the
+# radio's EDGETX_UF2 mass-storage bootloader). A plain firmware.bin from
+# these targets is NOT flashable (it's a QSPI image; generic DFU to
+# 0x08000000 bricks the radio). For these we ship the .uf2.
+QSPI_BOARDS=" tx16smk3 tx15 t15pro "
+is_qspi() { [[ "$QSPI_BOARDS" == *" $1 "* ]]; }
+
 for entry in "${TARGETS[@]}"; do
   read -r name extra_opts <<< "$(echo "$entry" | awk '{name=$1; $1=""; print name, $0}')"
   build_dir="$EDGETX/build-${name}-${LANG}"
   log="$LOGS/${name}-${LANG}.log"
-  out_bin="$OUT/${name}-${LANG}.bin"
+
+  if is_qspi "$name"; then ext="uf2"; else ext="bin"; fi
+  out_bin="$OUT/${name}-${LANG}.${ext}"
 
   # Optional staging path — when BSW_EDGETX_DIR points to BeeSwarmer's
-  # `EdgeTX/` source directory, copy into `<dir>/<lang>/<board>.bin` so a
+  # `EdgeTX/` source directory, copy into `<dir>/<lang>/<board>.<ext>` so a
   # rebuilt firmware lands in the source tree without an extra step.
   staged_bin=""
   if [[ -n "${BSW_EDGETX_DIR:-}" ]]; then
-    staged_bin="$BSW_EDGETX_DIR/$LANG/${name}.bin"
+    staged_bin="$BSW_EDGETX_DIR/$LANG/${name}.${ext}"
   fi
 
   if [[ -f "$out_bin" ]]; then
@@ -128,9 +138,13 @@ for entry in "${TARGETS[@]}"; do
     continue
   fi
 
-  bin="$build_dir/arm-none-eabi/firmware.bin"
+  if is_qspi "$name"; then
+    bin="$build_dir/arm-none-eabi/firmware.uf2"
+  else
+    bin="$build_dir/arm-none-eabi/firmware.bin"
+  fi
   if [[ ! -f "$bin" ]]; then
-    echo "[build_all]  ARTEFACT MISSING for $name — see $log"
+    echo "[build_all]  ARTEFACT MISSING for $name ($bin) — see $log"
     FAIL+=("$name(artefact)")
     popd > /dev/null
     continue
