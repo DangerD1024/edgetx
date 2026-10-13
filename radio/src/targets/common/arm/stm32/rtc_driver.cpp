@@ -65,10 +65,15 @@ uint16_t rtcGetTimeMs(struct gtm * t)
   t->tm_mon  = RTC_DateStruct.Month - 1;
   t->tm_mday = RTC_DateStruct.Date;
 
+#if defined(RTC_SSR_SS)
   // SSR counts down over PREDIV_S+1 steps, 1/256 s each with the usual setup
   uint32_t fraction = RTC_TimeStruct.SecondFraction;
   if (fraction == 0 || RTC_TimeStruct.SubSeconds > fraction) return 0;
   return (uint16_t)(((fraction - RTC_TimeStruct.SubSeconds) * 1000) / (fraction + 1));
+#else
+  // no sub-second register (STM32F2)
+  return 0;
+#endif
 }
 
 void rtcGetTime(struct gtm * t)
