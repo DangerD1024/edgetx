@@ -58,6 +58,8 @@ declare -a TARGETS=(
   "t16          -DPCB=X10 -DPCBREV=T16       -DINTERNAL_MODULE_MULTI=ON"
   "t18          -DPCB=X10 -DPCBREV=T18"
   "t15pro       -DPCB=T15PRO"
+  # ---- FrSky ----
+  "xlites       -DPCB=XLITES   -DHELI=OFF -DLUA_MIXER=OFF -DGHOST=OFF -DDSM2=OFF -DDSMP=OFF -DMULTIMODULE=OFF -DPPM=OFF -DRAS=OFF"
 )
 
 PASS=()
